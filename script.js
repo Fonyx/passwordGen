@@ -4,12 +4,6 @@ var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePasswordAndUpdate);
 
-// custom user exception for validating input
-function UserException(message) {
-    this.message = message;
-    this.name = 'UserException';
-}
-
 // custom user exit exception for when they cancel a prompt etc
 function UserExit(exitPoint){
     this.name = 'UserExit';
@@ -25,24 +19,28 @@ function isNumeric(n) {
 
 
 function generateRandomIntFromRange(min, max){
-    return Math.floor(math.random()*(max-min+1)+min);
+    return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-function Spec () {
+function Spec (debug) {
     // initial spec object defaults
+    this.debug = debug;
     this.length = undefined;
     this.lower = true;
     this.upper = false;
     this.numeric = false;
     this.special = false;
     this.letterSpace = [];
-    this.password = undefined;
+    this.password = '';
+
+    // predefined character sets
     this.specialSet = ['"',' ','!','"','#','$','%','&',"'",'(',')','*','+',','
         ,'-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
     this.lowerSet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
         'r','s','t','u','v','w','x','y','z'];
-    this.upperSet = this.lowerSet.toUpperCase();
-    this.numberSet = [0,1,2,3,4,5,6,7,8,9]
+    this.upperSet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
+        'R','S','T','U','V','W','X','Y','Z'];
+    this.numberSet = ['0','1','2','3','4','5','6','7','8','9'];
 
     // get the length of the password
     this.getLengthFromUser = function(){
@@ -94,45 +92,36 @@ function Spec () {
         /* This function simply gets and logs user input for boolean */
 
         // get user input with guiding default
-        userUseLower = confirm('Should Lower case letters be included?');
+        this.lower = confirm('Should Lower case letters be included?');
 
-        console.log(`User opted for: ${userUseLower} to using lower case letters`);
-
-        this.lower = userUseLower;
+        console.log(`User opted for: ${this.lower} to using lower case letters`);
 
     }
 
     // get user preference for upper case
     this.getUpperFromUser = function (){
         /* This function simply gets and logs user input for boolean */
-        userUseUpper = confirm('Should Upper case letters be included?');
+        this.upper = confirm('Should Upper case letters be included?');
 
-        console.log(`User opted for: ${userUseUpper} to using upper case letters`);
-
-        this.upper = userUseUpper;
+        console.log(`User opted for: ${this.upper} to using upper case letters`);
 
     }
 
     // get user preference for numerics
     this.getNumericFromUser = function(){
         /* This function simply gets and logs user input for boolean */
-        userUseNumeric = confirm('Should numbers be included?');
+        this.numeric = confirm('Should numbers be included?');
 
-        console.log(`User opted for: ${userUseNumeric} to using numbers`);
-
-        this.userUseNumeric;
+        console.log(`User opted for: ${this.numeric} to using numbers`);
 
     }
 
     // get user preference for special characters
     this.getSpecialFromUser = function(){
         /* This function simply gets and logs user input for boolean */
-        userUseSpecial = confirm('Should special characters be included?');
+        this.special = confirm('Should special characters be included?');
 
-        console.log(`User opted for: ${userUseSpecial} to using special characters`);
-
-        this.special = userUseSpecial;
-
+        console.log(`User opted for: ${this.special} to using special characters`);
     }
 
     // get user details method
@@ -149,57 +138,96 @@ function Spec () {
         // if lower case is available
         if (this.lower){
             // add lower case letters to the letter space
-            this.letterSpace.append(this.lowerSet);
+            if (this.debug){
+                console.log(`Letter space was:\n${this.letterSpace}`);
+            }
+            this.letterSpace = this.letterSpace.concat(this.lowerSet);
+            if (this.debug){
+                console.log(`Letter space now is:\n${this.letterSpace}`);
+            }
         }
         // if upper case is available
         if (this.upper){
             // add lower case letters to the letter space
-            this.letterSpace.append(this.upperSet);
+            if (this.debug){
+                console.log(`Letter space was:\n${this.letterSpace}`);
+            }
+            this.letterSpace = this.letterSpace.concat(this.upperSet);
+            if (this.debug){
+                console.log(`Letter space now is:\n${this.letterSpace}`);
+            }
         }
         // if numerics are available
         if (this.numeric){
             // add numbers to the letter space
-            this.letterSpace.append(this.numberSet);
+            if (this.debug){
+                console.log(`Letter space was:\n${this.letterSpace}`);
+            }
+            this.letterSpace = this.letterSpace.concat(this.numberSet);
+            if (this.debug){
+                console.log(`Letter space now is:\n${this.letterSpace}`);
+            }
         }
         // if special chars are available
         if (this.special){
             // add lower case letters to the letter space
-            this.letterSpace.append(this.specialSet);
+            if (this.debug){
+                console.log(`Letter space was:\n${this.letterSpace}`);
+            }
+            this.letterSpace = this.letterSpace.concat(this.specialSet);
+            if (this.debug){
+                console.log(`Letter space now is:\n${this.letterSpace}`);
+            }
         }
-    }
+
+        if (this.debug){
+            console.log(`Letter space is:\n${this.letterSpace.length} letters long`);
+        }
+
+    };
 
     this.chooseFromLetterSpace = function (){
         // generate a random number in the range of 0 to length of letter space - start at 0 for array indexing
-        let index = generateRandomIntFromRange(0, this.letterSpace.length);
+        // limit range by 1 to avoid overflow
+        let index = generateRandomIntFromRange(0, this.letterSpace.length-1);
+
+        // debugging output
+        if (this.debug){
+            console.log(`Random Index: ${index} Random Letter: ${this.letterSpace[index]}`)
+        }
+
         // return this letter
         return this.letterSpace[index];
-    }
+    };
 
     // generate password from spec
     this.generatePassword = function(){
+
         // make letter space
         this.generateLetterSpace();
 
         // loop through length and randomly select a letter from letter space
         for (let i=0; i < this.length; i++){
-            this.password += this.chooseFromLetterSpace();
+            newChar = this.chooseFromLetterSpace();
+            this.password += newChar;
+            if (this.debug){
+                console.log(`Added ${newChar} to password`);
+            }
         }
-    }
+    };
 
     // Write password to the #password input
-    this.writePassword = function (password) {
+    this.writePassword = function () {
         var passwordText = document.querySelector("#password");
         passwordText.value = this.password;
-    }
-
-
+    };
 }
 
 // Generate Password main function
 function generatePasswordAndUpdate() {
     try {
         // create a new spec object
-        let spec = new Spec();
+        let spec = new Spec(true);
 
         // get user details
         spec.getUserInput();
