@@ -110,7 +110,7 @@ function Spec (debug) {
     // get user preference for numerics
     this.getNumericFromUser = function(){
         /* This function simply gets and logs user input for boolean */
-        this.numeric = confirm('Should numbers be included?');
+        this.numeric = confirm('Should Numbers be included?');
 
         console.log(`User opted for: ${this.numeric} to using numbers`);
 
@@ -119,7 +119,7 @@ function Spec (debug) {
     // get user preference for special characters
     this.getSpecialFromUser = function(){
         /* This function simply gets and logs user input for boolean */
-        this.special = confirm('Should special characters be included?');
+        this.special = confirm('Should Special characters be included?');
 
         console.log(`User opted for: ${this.special} to using special characters`);
     }
@@ -131,6 +131,12 @@ function Spec (debug) {
         this.getUpperFromUser();
         this.getNumericFromUser();
         this.getSpecialFromUser();
+
+        // Case for if user selects no to all types
+        if (!this.lower && !this.upper && !this.numeric && !this.special){
+            alert('You left me no choice, I have to use lower case at least')
+            this.lower = true;
+        }
     }
 
     // generate a word space given spec values
@@ -186,6 +192,7 @@ function Spec (debug) {
 
     };
 
+    // randomly generate an index and select from letter space
     this.chooseFromLetterSpace = function (){
         // generate a random number in the range of 0 to length of letter space - start at 0 for array indexing
         // limit range by 1 to avoid overflow
