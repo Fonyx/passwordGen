@@ -58,20 +58,17 @@ function getUserSpecifications(){
             'numeric':false,
             'special':false};
 
-    try{
-        spec.length = getLengthFromUser();
-    } catch(error) {
-        if (error.name === 'UserException') {
-            console.log(error);
-            alert(error.message);
-            getUserSpecifications();
-        }
-    }
+    spec.length = getLengthFromUser();
+
     return spec
 }
 
 // get password length spec
 function getLengthFromUser(){
+    /* This function will continuously attempt to get a correct user input as a valid range integer
+    and it will console log any NEW incorrect user action, it doesn't log the user doing the same mistake twice */
+
+
     // get user input with guiding default
     userLengthText = prompt('How long should the password be?', '8-128');
 
@@ -79,22 +76,35 @@ function getLengthFromUser(){
     if (userLengthText === null){
         throw new UserExit('Length Collection');
     }
+
     // get user length int
     userLengthInt = parseInt(userLengthText, 10);
 
     // validate user entered a number
     if (isNumeric(userLengthInt) === false){
-        throw new UserException("Your input wasn't a number, try again")
+        console.log(`User entered: ${userLengthText} which failed the numeric test`);
+        alert("Your input wasn't a number, try again");
+        // try again to get details from user
+        getLengthFromUser();
     }
+
     // validate user input range
+    // if number too small
     if (userLengthInt < 8){
-        // if number too small
-        throw new UserException("Number was too small")
+        console.log(`User entered: ${userLengthInt} which was too small`);
+        alert("Your number was too small, try again");
+        // try again to get details from user
+        getLengthFromUser();
+
+    // if number too big
     } else if (userLengthInt > 128){
-        // if number too big
-        throw new UserException("Number was too large")
+        console.log(`User entered: ${userLengthInt} was too big`);
+        alert("Your number was too big, try again");
+        // try again to get details from user
+        getLengthFromUser();
+
+    // success case
     } else {
-        // success case
         return userLengthInt;
     }
 }
