@@ -16,6 +16,23 @@
         <div class="card-header">
             <h2>Generate a Password</h2>
         </div>
+        <form id="user_spec_form">
+            <label for="i_length">Length</label>
+            <input class="user_input" type="text" id="i_length" name="i_length" placeholder="[8-128]"/>
+            <br>
+            <label for="i_lower">Lower Case</label>
+            <input class="user_input" type="checkbox" id="i_lower" name="i_lower"/>
+            <br>
+            <label for="i_upper">Upper Case</label>
+            <input class="user_input" type="checkbox" id="i_upper" name="i_upper"/>
+            <br>
+            <label for="i_numbers">Numbers</label>
+            <input class="user_input" type="checkbox" id="i_numbers" name="i_numbers"/>
+            <br>
+            <label for="i_special">Special Characters</label>
+            <input class="user_input" type="checkbox" id="i_special" name="i_special"/>
+            <button class="btn" type="submit" id="form_submit">Generate Password</button>
+        </form>
         <div class="card-body">
           <textarea
                   readonly
@@ -24,11 +41,11 @@
                   aria-label="Generated Password"
           ></textarea>
         </div>
-        <div class="card-footer">
-            <button id="generate" class="btn">Generate Password</button>
-        </div>
+<!--        <div class="card-footer">-->
+<!--            <button id="generate" class="btn">Generate Password</button>-->
+<!--        </div>-->
     </div>
 </div>
-<script src="script.js"></script>
+<script src="form.js"></script>
 </body>
 </html>

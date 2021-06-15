@@ -116,6 +116,10 @@ button[disabled] {
     overflow: hidden;
 }
 
+.user_spec_form{
+    margin: 0 auto;
+}
+
 @media (max-width: 690px) {
     .btn {
         font-size: 1rem;

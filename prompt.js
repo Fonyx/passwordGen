@@ -1,8 +1,31 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+var form_submit = document.querySelector("#form_submit");
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePasswordAndUpdate);
+form_submit.addEventListener("click", generatePasswordAndUpdate);
+
+// Generate Password main function
+function generatePasswordAndUpdate() {
+    try {
+        // create a new spec object
+        let spec = new Spec(true);
+
+        // get user details
+        spec.getUserInput();
+
+        // generate new password
+        spec.generatePassword();
+
+        // update html #password input element with result
+        spec.writePassword();
+
+        // if the user exits the program early
+    } catch(error) {
+        if (error.name === 'UserExit'){
+            console.log(`User exited at: ${error.state}`);
+        }
+    }
+}
 
 // custom user exit exception for when they cancel a prompt etc
 function UserExit(exitPoint){
@@ -16,7 +39,6 @@ function UserExit(exitPoint){
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
-
 
 function generateRandomIntFromRange(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
@@ -225,30 +247,9 @@ function Spec (debug) {
 
     // Write password to the #password input
     this.writePassword = function () {
+        console.log(this.password);
         var passwordText = document.querySelector("#password");
         passwordText.value = this.password;
     };
 }
 
-// Generate Password main function
-function generatePasswordAndUpdate() {
-    try {
-        // create a new spec object
-        let spec = new Spec(true);
-
-        // get user details
-        spec.getUserInput();
-
-        // generate new password
-        spec.generatePassword();
-
-        // update html #password input element with result
-        spec.writePassword();
-
-    // if the user exits the program early
-    } catch(error) {
-        if (error.name === 'UserExit'){
-            console.log(`User exited at: ${error.state}`);
-        }
-    }
-}
