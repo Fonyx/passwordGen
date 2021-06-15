@@ -157,6 +157,9 @@ function sendUserSettingsToPasswordGenerator(e){
         console.log('the spec parsed in was:', spec);
         spec.run();
     }
+
+    // copy the password to the clipboard
+    copyPasswordToClipboard();
 }
 
 // returns boolean for valid user input
@@ -186,4 +189,21 @@ function validateUserLength(userLengthText){
     } else {
         return true;
     }
+}
+
+
+// copy the password text to clipboard
+function copyPasswordToClipboard(){
+
+    let passwordField = document.getElementById('password');
+    passwordField.select();
+
+    document.execCommand('copy');
+
+    let footer = document.getElementById('footer');
+
+    let text = document.createTextNode('\ntext copied to clipboard!');
+
+    footer.appendChild(text);
+
 }
