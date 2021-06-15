@@ -200,10 +200,15 @@ function copyPasswordToClipboard(){
 
     document.execCommand('copy');
 
+    // remove the previous footnote
     let footer = document.getElementById('footer');
+    footer.innerHTML= '';
 
-    let text = document.createTextNode('\ntext copied to clipboard!');
+    // create new footnote
+    let text = document.createTextNode('text copied to clipboard');
+    text.id='footnote';
 
+    // append new footnote
     footer.appendChild(text);
 
 }

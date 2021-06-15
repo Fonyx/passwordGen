@@ -32,6 +32,7 @@ header {
 
 form{
     text-align: center;
+    padding: 10px 0 10px 0;
 }
 
 .card {
@@ -60,6 +61,7 @@ form{
 
 .card-footer {
     text-align: center;
+    padding: 10px 0 10px 0;
 }
 
 .card-footer::before {
