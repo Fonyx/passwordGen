@@ -1,7 +1,8 @@
 # Password Gen
 A javascript project that generates a password based on user settings
-
 ![Screenshot](https://github.com/Fonyx/passwordGen/blob/main/screenshot.PNG?raw=true "password generator")
+
+deployed @ https://fonyx.github.io/passwordGen/  
 
 ## Acceptatance Criteria
 ```
