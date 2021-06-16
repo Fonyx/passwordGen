@@ -83,6 +83,8 @@ form{
     padding: 5px 0 5px 0;
 }
 
+/*https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+/* Followed example of a slider on w3 schools */
 .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -105,6 +107,13 @@ form{
     height: 25px;
     background: var(--secondary);
     cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: var(--secondary); /* Green background */
+    cursor: pointer; /* Cursor on hover */
 }
 
 .card {
