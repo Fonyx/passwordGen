@@ -1,3 +1,35 @@
+/*:root{*/
+/*    --primary: #FF7F60;*/
+/*    --secondary: #FFB26D;*/
+/*    --tertiary: #FDD272;*/
+/*    --quaternary: #3EB2A2;*/
+/*    --quinary: #385663;*/
+/*}*/
+
+/*:root{*/
+/*    --primary: #8DA4CF;*/
+/*    --secondary: #9EA9CE;*/
+/*    --tertiary: #B7B3CC;*/
+/*    --quaternary: #E2C3CC;*/
+/*    --quinary: #F8CACC;*/
+/*}*/
+
+/*:root{*/
+/*    --primary: #F22738;*/
+/*    --secondary: #A63247;*/
+/*    --tertiary: #3E3740;*/
+/*    --quaternary: #F2DDD0;*/
+/*    --quinary: #F2F2F2;*/
+/*}*/
+
+:root{
+    --primary: #2E4159;
+    --secondary: #51718C;
+    --tertiary: #698FB6;
+    --quaternary: #91B7D9;
+    --quinary: #E4E4E4;
+}
+
 *,
 *::before,
 *::after {
@@ -14,11 +46,15 @@ body,
 
 body {
     font-family: sans-serif;
-    background-color: #f9fbfd;
+    background-color: mintcream;
+}
+
+h1 {
+    text-align: center;
 }
 
 .wrapper {
-    padding-top: 30px;
+    padding-top: 6%;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -35,8 +71,36 @@ form{
     padding: 10px 0 10px 0;
 }
 
+.form_row{
+    padding: 5px 0 5px 0;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background-image: linear-gradient(to right, var(--tertiary), var(--primary));
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: var(--secondary);
+    cursor: pointer;
+}
+
 .card {
-    background-color: hsl(0, 0%, 100%);
+    background-image: linear-gradient(to bottom right, var(--quaternary), var(--quinary));
     border-radius: 5px;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px 0;
@@ -51,7 +115,7 @@ form{
     content: " ";
     display: block;
     width: 100%;
-    background: #e7e9eb;
+    background: var(--quaternary);
     height: 2px;
 }
 
@@ -68,7 +132,7 @@ form{
     content: " ";
     display: block;
     width: 100%;
-    background: #e7e9eb;
+    background: var(--quinary);
     height: 2px;
 }
 
@@ -80,10 +144,10 @@ form{
 
 .btn {
     border: none;
-    background-color: hsl(360, 91%, 36%);
+    background-color: var(--tertiary);
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 1px 6px 0, rgba(0, 0, 0, 0.2) 0 1px 1px 0;
-    color: hsl(0, 0%, 100%);
+    color: var(--primary);
     display: inline-block;
     font-size: 22px;
     line-height: 22px;
@@ -116,10 +180,12 @@ button[disabled] {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 2px dashed #c0c7cf;
-    border-radius: 6px;
+    border: 2px solid #c0c7cf;
+    border-radius: 2px;
     resize: none;
     overflow: hidden;
+    background-color: var(--quinary);
+    color: var(--primary)
 }
 
 @media (max-width: 690px) {
