@@ -1,6 +1,8 @@
 # Password Gen
 A javascript project that generates a password based on user settings
 
+![Screenshot](?raw=true "password generator")
+
 ## Acceptatance Criteria
 ```
 AS AN employee with access to sensitive data
