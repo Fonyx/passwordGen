@@ -14,21 +14,29 @@
 /*    --quinary: #F8CACC;*/
 /*}*/
 
+:root{
+    --primary: #F22738;
+    --secondary: #A63247;
+    --tertiary: #3E3740;
+    --quaternary: #F2DDD0;
+    --quinary: #F2F2F2;
+}
+
 /*:root{*/
-/*    --primary: #F22738;*/
-/*    --secondary: #A63247;*/
-/*    --tertiary: #3E3740;*/
-/*    --quaternary: #F2DDD0;*/
-/*    --quinary: #F2F2F2;*/
+/*    --primary: #2E4159;*/
+/*    --secondary: #51718C;*/
+/*    --tertiary: #698FB6;*/
+/*    --quaternary: #91B7D9;*/
+/*    --quinary: #E4E4E4;*/
 /*}*/
 
-:root{
-    --primary: #2E4159;
-    --secondary: #51718C;
-    --tertiary: #698FB6;
-    --quaternary: #91B7D9;
-    --quinary: #E4E4E4;
-}
+/*:root{*/
+/*    --primary: #D93662;*/
+/*    --secondary: #3A3873;*/
+/*    --tertiary: #04BFAD;*/
+/*    --quaternary: #F2AF5C;*/
+/*    --quinary: #F2695C;*/
+/*}*/
 
 *,
 *::before,
