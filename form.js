@@ -1,5 +1,5 @@
-// debug is a prameter used to log to console
-let debug = false;
+// debug is a prameter used to log to console - global
+debug = false;
 
 // a function that returns a random int inclusively between min and max
 function generateRandomIntFromRange(min, max){
