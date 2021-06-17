@@ -250,6 +250,11 @@ function shuffleColorScheme(){
     // increment
     let newIndex = currentIndex + 1;
 
+    // make sure no overload
+    if (newIndex === primaries.length){
+        newIndex=0;
+    }
+
     // set all the properties to the new index
     r.style.setProperty('--primary', primaries[newIndex]);
     r.style.setProperty('--secondary', secondaries[newIndex]);
