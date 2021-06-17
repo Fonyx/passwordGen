@@ -1,3 +1,6 @@
+// debug is a prameter used to log to console
+let debug = false;
+
 // a function that returns a random int inclusively between min and max
 function generateRandomIntFromRange(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
@@ -154,7 +157,9 @@ function sendUserSettingsToPasswordGenerator(e){
     // validating user parsed in a valid number
     if(validateUserLength(length)){
         let spec = new SpecByForm(length, lower, upper, numeric, special);
-        console.log('the spec parsed in was:', spec);
+        if (debug) {
+            console.log('the spec parsed in was:', spec);
+        }
         spec.run();
     }
 
@@ -170,19 +175,25 @@ function validateUserLength(userLengthText){
 
     // validate user entered a number
     if (isNumeric(userLengthInt) === false){
-        console.log(`User entered: ${userLengthText} which failed the numeric test`);
+        if (debug) {
+            console.log(`User entered: ${userLengthText} which failed the numeric test`);
+        }
         alert("Your length input wasn't a number, try again");
     }
 
     // validate user input range
     // if number too small
     else if (userLengthInt < 8){
-        console.log(`User entered: ${userLengthInt} which was too small`);
+        if (debug) {
+            console.log(`User entered: ${userLengthInt} which was too small`);
+        }
         alert("Your number was too small, try again");
 
     // if number too big
     } else if (userLengthInt > 128){
-        console.log(`User entered: ${userLengthInt} was too big`);
+        if (debug) {
+            console.log(`User entered: ${userLengthInt} was too big`);
+        }
         alert("Your number was too big, try again");
 
     // success case
