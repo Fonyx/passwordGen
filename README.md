@@ -1,7 +1,7 @@
 # Password Gen
 A javascript project that generates a password based on user settings  
 deployed @ https://fonyx.github.io/passwordGen/ 
-![Screenshot](https://github.com/Fonyx/passwordGen/blob/main/screenshot.PNG?raw=true "password generator") 
+![Screenshot](https://github.com/Fonyx/passwordGen/blob/main/screencap.gif?raw=true "password generator") 
 
 Application generates a password from the user built character space, if the user negects any types, the default of 
 lower case will be chosen and the user will be nudged. 
